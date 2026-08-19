@@ -1,0 +1,83 @@
+{
+  "name": "Google",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "d3e77255-33d7-4a89-b4e1-57e4642d3649",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "url": "https://developers.google.com/community/gdsc",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        192,
+        0
+      ],
+      "id": "e7464dd3-cf31-42aa-ad6e-2d7b3a4b1410",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const html = $input.first().json.data;\n\nconst results = [];\nconst seen = new Set();\n\nconst regex = /<a[^>]+href=\"([^\"]+)\"[^>]*>([\\s\\S]*?)<\\/a>/gi;\n\nlet match;\n\nwhile ((match = regex.exec(html)) !== null) {\n  let url = match[1];\n  let title = match[2]\n    .replace(/<[^>]*>/g, '')\n    .replace(/\\s+/g, ' ')\n    .trim();\n\n  if (!title || !url) continue;\n\n  if (url.startsWith('/')) {\n    url = 'https://developers.google.com' + url;\n  }\n\n  if (!url.startsWith('https://developers.google.com')) continue;\n\n  const text = `${title} ${url}`.toLowerCase();\n\n  const relevant =\n    text.includes('student') ||\n    text.includes('campus') ||\n    text.includes('gdg') ||\n    text.includes('event') ||\n    text.includes('hackathon') ||\n    text.includes('community') ||\n    text.includes('program') ||\n    text.includes('challenge');\n\n  if (!relevant) continue;\n\n  if (seen.has(url)) continue;\n  seen.add(url);\n\n  results.push({\n    json: {\n      title,\n      organization: 'Google',\n      url,\n      deadline: null,\n      location: 'Online / Global',\n      status: 'open',\n      source: 'Google'\n    }\n  });\n}\n\nreturn results;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        0
+      ],
+      "id": "2bca79c8-5896-48b0-9450-7bd525973c1c",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "c77d8785-39bd-46e3-b021-0f02c87f727b",
+  "meta": {
+    "instanceId": "d2df28be7c0f1467694c6ef950bd1305b162cd77d499a6227f3a131423e7d7e9"
+  },
+  "nodeGroups": [],
+  "id": "0pd8W5b6UxYvqctG",
+  "tags": []
+}

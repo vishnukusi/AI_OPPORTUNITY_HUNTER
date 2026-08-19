@@ -1,0 +1,914 @@
+{
+  "name": "OPPORTUNITY",
+  "nodes": [
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "NtvvApINWenZrlF6",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/NtvvApINWenZrlF6",
+          "cachedResultName": "sources"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [
+            ""
+          ],
+          "schema": [
+            {
+              "id": "",
+              "displayName": "",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "canBeUsedToMatch": true,
+              "type": "string",
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "7dc12e28-efdd-4ba1-ad4c-06d2af71b8f4",
+      "name": "Call 'sources'",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        -192,
+        -336
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "5JmZnZ7AyUwYyUkY",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/5JmZnZ7AyUwYyUkY",
+          "cachedResultName": "Devpost"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "a84c2f8a-a603-4df6-8c78-3a0563905185",
+      "name": "Call 'Devpost'",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        -192,
+        -112
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "fZSWGI0qE8Yii5Ya",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/fZSWGI0qE8Yii5Ya",
+          "cachedResultName": "kaggle"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "92afa3bc-335e-4168-9a23-23dfb52d9488",
+      "name": "Call 'kaggle'",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        -224,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "YGNj23nlk6apSnaP",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/YGNj23nlk6apSnaP",
+          "cachedResultName": "microsoft"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "85d9e7fd-0050-493a-9ecd-7d82b28e630e",
+      "name": "Call 'microsoft'",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        -240,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "0pd8W5b6UxYvqctG",
+          "mode": "list",
+          "cachedResultUrl": "/workflow/0pd8W5b6UxYvqctG",
+          "cachedResultName": "Google"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": true
+        },
+        "options": {}
+      },
+      "id": "60269697-1131-48e2-a16c-255ae63e8156",
+      "name": "Call 'Google'",
+      "type": "n8n-nodes-base.executeWorkflow",
+      "typeVersion": 1.3,
+      "position": [
+        -240,
+        528
+      ]
+    },
+    {
+      "parameters": {
+        "numberInputs": 5
+      },
+      "id": "4ad4c664-1b68-41fd-97e6-2b25c16f9ed0",
+      "name": "Merge1",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        32,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "fe469333-b597-4a6c-9877-f24564258a5f",
+              "leftValue": "={{ $json.status }}",
+              "rightValue": "open",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "475f41e6-6684-4ad6-b570-e40f2a1a51a9",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        896,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You evaluate student opportunities for a Computer Science / AI-ML university student.\n\nYou are given a JSON array of opportunities. Evaluate EVERY item in the array.\n\nFor each opportunity return an object with exactly these fields:\n- title: copy the title from the input.\n- url: copy the url from the input.\n- deadline: copy the deadline from the input (use the input value, do not invent one).\n- relevant: true only if it is genuinely useful for CS, AI, ML, coding, technology, research, innovation, entrepreneurship, or a strong student career opportunity.\n- score: integer from 0 to 10.\n- priority: HIGH for 8-10, MEDIUM for 5-7, LOW for 0-4.\n- category: short category such as AI/ML, Hackathon, Coding, Research, Entrepreneurship, Student Program, Competition, or Other.\n- reason: one short sentence.\n\nBe conservative. Do not assume eligibility, deadlines, prizes, or international access unless supported by the input. Only use the opportunities provided below — never invent opportunities. Return exactly one result object for every input opportunity, in the same order.\n\nOpportunities (JSON array):\n{{ JSON.stringify($input.all().map(i => i.json)) }}\n\nReturn ONLY the structured output as {\"results\": [ ... ]}.",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "You are a conservative opportunity evaluation assistant for university students. Score and classify each opportunity from the provided JSON array and return only the requested fields as a JSON object with a \"results\" array."
+        }
+      },
+      "id": "3ae07ebc-ea2f-4ecd-904d-52a16888f9bd",
+      "name": "AI Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1344,
+        -288
+      ],
+      "executeOnce": true
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"results\": [\n    {\n      \"title\": \"Build with Gemini XPRIZE\",\n      \"url\": \"https://xprize.devpost.com/\",\n      \"deadline\": \"May 19 - Aug 17, 2026\",\n      \"relevant\": true,\n      \"priority\": \"HIGH\",\n      \"score\": 9,\n      \"reason\": \"Strong AI and technology opportunity suitable for a university CSE/AIML student.\",\n      \"category\": \"AI/ML\"\n    }\n  ]\n}"
+      },
+      "id": "8cf17a3e-f82f-43e3-85ac-1a36203c4adb",
+      "name": "Structured Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        1536,
+        80
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const keywords = [\n  'ai',\n  'artificial intelligence',\n  'machine learning',\n  'ml',\n  'deep learning',\n  'data science',\n  'computer science',\n  'software',\n  'coding',\n  'developer',\n  'programming',\n  'technology',\n  'tech',\n  'hackathon',\n  'competition',\n  'challenge',\n  'fellowship',\n  'scholarship',\n  'student',\n  'campus',\n  'research',\n  'innovation',\n  'startup',\n  'entrepreneur',\n  'gemini',\n  'cloud',\n  'cybersecurity',\n  'robotics'\n];\n\nreturn $input.all().filter(item => {\n  const text = [\n    item.json.title,\n    item.json.organization,\n    item.json.location,\n    item.json.url\n  ]\n    .filter(Boolean)\n    .join(' ')\n    .toLowerCase();\n\n  return keywords.some(keyword => text.includes(keyword));\n});"
+      },
+      "id": "799417ee-7898-4df2-989b-4ba79dd353ea",
+      "name": "Ai Filter",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        208,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const seen = new Set();\nconst unique = [];\n\nfor (const item of $input.all()) {\n  const opportunity = item.json;\n\n  const key = (opportunity.title || '')\n    .trim()\n    .toLowerCase();\n\n  if (!key) {\n    unique.push(item);\n    continue;\n  }\n\n  if (!seen.has(key)) {\n    seen.add(key);\n    unique.push(item);\n  }\n}\n\nreturn unique;"
+      },
+      "id": "c45c3775-d288-4f1c-8026-96ec5bb04541",
+      "name": "duplicate removal",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        368,
+        -192
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Items arriving here are already normalized by the upstream source\n// sub-workflows / Merge / Ai Filter / duplicate removal steps.\n// Each item is a flat object: { title, organization, url, deadline, location, status, source }.\n// Map them through, preserving the fields the rest of the flow expects.\n// deadline is coerced to a string so the downstream structured output parser\n// (which requires a string) never receives null.\n\nreturn $input.all().map(item => {\n  const o = item.json;\n  const deadline =\n    o.deadline === null || o.deadline === undefined || o.deadline === ''\n      ? 'Not specified'\n      : String(o.deadline);\n  return {\n    json: {\n      title: o.title,\n      url: o.url,\n      organization: o.organization,\n      location: o.location,\n      status: o.status,\n      deadline: deadline,\n      source: o.source,\n    },\n  };\n});"
+      },
+      "id": "11998120-2af3-4c52-a7fd-98dabd8963a3",
+      "name": "Code in JavaScript",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const opportunityKeywords = [\n  'hackathon',\n  'competition',\n  'challenge',\n  'xprize',\n  'cup',\n  'fellowship',\n  'scholarship',\n  'ambassador',\n  'accelerator',\n  'internship',\n  'program',\n  'contest',\n  'prize',\n  'summit'\n];\n\nconst excludeKeywords = [\n  'for beginners',\n  'learning center',\n  'student developer pack',\n  'community/events',\n  'learn more',\n  'tutorial',\n  'course'\n];\n\nreturn $input.all().filter(item => {\n  const title = (item.json.title || '').toLowerCase();\n\n  const looksLikeOpportunity =\n    opportunityKeywords.some(k => title.includes(k));\n\n  const looksLikeResource =\n    excludeKeywords.some(k => title.includes(k));\n\n  return looksLikeOpportunity && !looksLikeResource;\n});"
+      },
+      "id": "4edbcf3e-4506-4554-9f29-683543c3a5de",
+      "name": "Code in JavaScript1",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1072,
+        -256
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "output.results",
+        "options": {}
+      },
+      "id": "ceae025a-336d-458b-bcb6-e562d8005c36",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        1872,
+        -448
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ff2d0687-6eb6-422d-810d-1f9cac236700",
+              "leftValue": "={{ $json.relevant }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "43f4caff-821e-4489-a7e8-afe715e88ed8",
+              "leftValue": "={{ $json.score }}",
+              "rightValue": 7,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "looseTypeValidation": true,
+        "options": {}
+      },
+      "id": "fb8e6244-3aee-438c-87d9-b354c2f3e20b",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2192,
+        -608
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1RfAqewi9Jv_Ydag9enryRFWZsdOdoEtnuIZptNoNKpk",
+          "mode": "list",
+          "cachedResultName": "Opportunity hunter",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1RfAqewi9Jv_Ydag9enryRFWZsdOdoEtnuIZptNoNKpk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "URL": "={{ $json.url }}",
+            "Location": "=",
+            "Title": "={{ $json.title }}",
+            "Deadline": "={{ $json.deadline }}",
+            "Discovered_at": "={{ $now }}",
+            "Priority": "={{ $json.priority }}",
+            "Category": "={{ $json.category }}",
+            "Reason": "={{ $json.reason }}",
+            "score": "={{ $json.score }}",
+            "international": "=",
+            "online": "="
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Title",
+              "displayName": "Title",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Organisation",
+              "displayName": "Organisation",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "URL",
+              "displayName": "URL",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Location",
+              "displayName": "Location",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Deadline",
+              "displayName": "Deadline",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Priority",
+              "displayName": "Priority",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Category",
+              "displayName": "Category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Reason",
+              "displayName": "Reason",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Discovered_at",
+              "displayName": "Discovered_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "score",
+              "displayName": "score",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "online",
+              "displayName": "online",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "international",
+              "displayName": "international",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "id": "f35b31e9-5e36-4b24-a038-abfe3028cb6c",
+      "name": "Append row in sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3072,
+        -464
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "4BegBbazsgSoVuqU",
+          "name": "Google Sheets account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "8838117689",
+        "text": "=🔥 NEW OPPORTUNITY \n🎯 {{ $json.Title }}  \n⭐ Priority: {{ $json.Priority }}\n📊 Score: {{ $json.score }}/10 \n🏷️ Category :{{ $json.Category }}   📅 Deadline: {{ $json.Deadline }}\n💡 Why: {{ $json.Reason }}  \n🔗 Apply: {{ $json.URL }}",
+        "additionalFields": {}
+      },
+      "id": "376b8064-41a1-40bc-a259-a25fd869db0f",
+      "name": "Send a text message",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        3392,
+        -416
+      ],
+      "webhookId": "ea28f8d6-26be-4a60-8a18-64c3ea2b78dd",
+      "credentials": {
+        "telegramApi": {
+          "id": "TZQmfu4WvKsdtKvH",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1RfAqewi9Jv_Ydag9enryRFWZsdOdoEtnuIZptNoNKpk",
+          "mode": "list",
+          "cachedResultName": "Opportunity hunter",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1RfAqewi9Jv_Ydag9enryRFWZsdOdoEtnuIZptNoNKpk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1RfAqewi9Jv_Ydag9enryRFWZsdOdoEtnuIZptNoNKpk/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "URL",
+              "lookupValue": "={{ $json.url }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "6988afff-81f7-47e3-b046-95f93b30dfbc",
+      "name": "LOOKUP",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2512,
+        -656
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "4BegBbazsgSoVuqU",
+          "name": "Google Sheets account 3"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "833c458d-c614-4881-8356-9f16f910742e",
+              "leftValue": "={{ $('If1').item.json.url }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "ab5bfa3a-091c-4c73-8200-12c9aa7cb1f1",
+      "name": "If2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        2848,
+        -592
+      ]
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-3.5-flash",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        1328,
+        96
+      ],
+      "id": "294f4050-f289-4da9-ac9d-cd98ecb13494",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "DrD3Bk32RcLfLh7p",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "triggerAtHour": 7
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -544,
+        16
+      ],
+      "id": "52ff8258-6d88-428c-9357-1c2bd7f8cc67",
+      "name": "Schedule Trigger"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Call 'sources'": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Call 'Devpost'": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Call 'kaggle'": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 2
+          }
+        ]
+      ]
+    },
+    "Call 'microsoft'": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 3
+          }
+        ]
+      ]
+    },
+    "Call 'Google'": {
+      "main": [
+        [
+          {
+            "node": "Merge1",
+            "type": "main",
+            "index": 4
+          }
+        ]
+      ]
+    },
+    "Merge1": {
+      "main": [
+        [
+          {
+            "node": "Ai Filter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Structured Output Parser": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Ai Filter": {
+      "main": [
+        [
+          {
+            "node": "duplicate removal",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "duplicate removal": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "LOOKUP",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "LOOKUP": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Call 'kaggle'",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Call 'Devpost'",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Call 'microsoft'",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Call 'Google'",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Call 'sources'",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "ef30aa06-d8dc-4640-a68e-4d12912d73fe",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "d2df28be7c0f1467694c6ef950bd1305b162cd77d499a6227f3a131423e7d7e9"
+  },
+  "nodeGroups": [],
+  "id": "nXI0ZDtqTTSZzrms",
+  "tags": []
+}

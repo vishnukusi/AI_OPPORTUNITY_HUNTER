@@ -1,0 +1,83 @@
+{
+  "name": "microsoft",
+  "nodes": [
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "5ae41c81-2aa7-464a-9519-d1014cbeeb5c",
+      "name": "When Executed by Another Workflow"
+    },
+    {
+      "parameters": {
+        "url": "https://learn.microsoft.com/en-us/training/student-hub/?accept=text/markdown",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        224,
+        0
+      ],
+      "id": "1b5752a1-154e-411b-8280-afd92f1c76a3",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const markdown = $input.first().json.data;\n\nconst opportunities = [\n  {\n    title: \"Imagine Cup 2026\",\n    url: \"https://imaginecup.microsoft.com/\",\n    organization: \"Microsoft\",\n    deadline: null\n  },\n  {\n    title: \"Azure Quickstarts\",\n    url: \"https://aka.ms/shazuresamplecode\",\n    organization: \"Microsoft\",\n    deadline: null\n  },\n  {\n    title: \"Microsoft Copilot Learning Center\",\n    url: \"https://www.microsoft.com/microsoft-365/college-student-pricing?ocid=cmmciuvo8xw\",\n    organization: \"Microsoft\",\n    deadline: null\n  },\n  {\n    title: \"GitHub Student Developer Pack\",\n    url: \"https://education.github.com/pack\",\n    organization: \"GitHub\",\n    deadline: null\n  },\n  {\n    title: \"AI for Beginners\",\n    url: \"https://github.com/microsoft/ai-for-beginners\",\n    organization: \"Microsoft\",\n    deadline: null\n  },\n  {\n    title: \"Data Science for Beginners\",\n    url: \"https://github.com/microsoft/Data-Science-For-Beginners\",\n    organization: \"Microsoft\",\n    deadline: null\n  },\n  {\n    title: \"Machine Learning for Beginners\",\n    url: \"https://github.com/microsoft/ML-For-Beginners\",\n    organization: \"Microsoft\",\n    deadline: null\n  },\n  {\n    title: \"Cybersecurity for Beginners\",\n    url: \"https://github.com/microsoft/Security-101\",\n    organization: \"Microsoft\",\n    deadline: null\n  },\n  {\n    title: \"AI Agents for Beginners\",\n    url: \"https://github.com/microsoft/ai-agents-for-beginners\",\n    organization: \"Microsoft\",\n    deadline: null\n  },\n  {\n    title: \"Generative AI for Beginners\",\n    url: \"https://github.com/microsoft/generative-ai-for-beginners/tree/main\",\n    organization: \"Microsoft\",\n    deadline: null\n  },\n  {\n    title: \"Mastering GitHub Copilot\",\n    url: \"https://github.com/microsoft/Mastering-GitHub-Copilot-for-Paired-Programming\",\n    organization: \"Microsoft\",\n    deadline: null\n  },\n  {\n    title: \"Copilot Adventures\",\n    url: \"https://github.com/microsoft/copilotadventures\",\n    organization: \"Microsoft\",\n    deadline: null\n  }\n];\n\nreturn opportunities.map(opportunity => ({\n  json: {\n    title: opportunity.title,\n    organization: opportunity.organization,\n    url: opportunity.url,\n    deadline: opportunity.deadline,\n    location: \"Online\",\n    status: \"open\",\n    source: \"Microsoft\"\n  }\n}));"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        0
+      ],
+      "id": "ce3fe05a-acc4-40d3-a955-469b3821b081",
+      "name": "Code in JavaScript"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "83dc0d72-878b-40c3-8002-31b05392502f",
+  "meta": {
+    "instanceId": "d2df28be7c0f1467694c6ef950bd1305b162cd77d499a6227f3a131423e7d7e9"
+  },
+  "nodeGroups": [],
+  "id": "YGNj23nlk6apSnaP",
+  "tags": []
+}

@@ -1,0 +1,83 @@
+{
+  "name": "Devpost",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://devpost.com/api/hackathons",
+        "options": {}
+      },
+      "id": "0bef90fd-d2e3-4c22-99ea-f05d319c7886",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        224,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const opportunities = $json.hackathons || [];\n\nreturn opportunities.map(item => ({\n  json: {\n    title: item.title,\n    organization: item.organization_name || \"Devpost\",\n    url: item.url,\n    deadline: item.submission_period_dates,\n    location: item.displayed_location?.location || \"Online\",\n    status: item.open_state || \"open\",\n    source: \"Devpost\"\n  }\n}));"
+      },
+      "id": "aa151178-4079-4843-9d96-39091eb41092",
+      "name": "Code in JavaScript",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        448,
+        304
+      ]
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        32,
+        304
+      ],
+      "id": "1fa1dbb2-26c6-4e73-bf94-18058496887c",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "8f196625-64ce-48f6-a99f-0428ab08ed6a",
+  "meta": {
+    "instanceId": "d2df28be7c0f1467694c6ef950bd1305b162cd77d499a6227f3a131423e7d7e9"
+  },
+  "nodeGroups": [],
+  "id": "5JmZnZ7AyUwYyUkY",
+  "tags": []
+}

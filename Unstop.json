@@ -1,0 +1,104 @@
+{
+  "name": "Unstop",
+  "nodes": [
+    {
+      "parameters": {
+        "url": "https://unstop.com/api/public/opportunity/search-result",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "opportunity",
+              "value": "hackathons"
+            },
+            {
+              "name": "per_page",
+              "value": "20"
+            },
+            {
+              "name": "oppstatus",
+              "value": "open"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {}
+          }
+        }
+      },
+      "id": "0385b753-a5fc-435d-b650-4ab5011fb582",
+      "name": "HTTP Request",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        160,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const opportunities = $json.data.data;\n\nreturn opportunities.map(item => ({\n  json: {\n    title: item.title,\n    organization: item.organisation?.name || \"Unstop\",\n    url: item.seo_url,\n    deadline: item.end_date,\n    location: item.address_with_country_logo?.city || \"India\",\n    status: \"open\",\n    source: \"Unstop\"\n  }\n}));"
+      },
+      "id": "fd842578-f2d2-4b98-b29c-ef22599ecda8",
+      "name": "Code in JavaScript",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        384,
+        0
+      ]
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "id": "8d4a43a0-6729-42c5-bf1a-a683ac7ddb13",
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -64,
+        16
+      ]
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "9a0e88c2-fb9b-42f2-b667-854cd1e14876",
+  "meta": {
+    "instanceId": "d2df28be7c0f1467694c6ef950bd1305b162cd77d499a6227f3a131423e7d7e9"
+  },
+  "nodeGroups": [],
+  "id": "NtvvApINWenZrlF6",
+  "tags": []
+}
